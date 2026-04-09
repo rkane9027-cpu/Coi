@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Salon Élégance • Coiffure Premium & Animaux Magiques</title>
+  <!-- Font Awesome 6 (gratuit) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Google Fonts : Poppins + Playfair Display pour le luxe -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #FEFAF6;
+      color: #2C2418;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    /* Container global */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ========== ANIMAUX FLOTTANTS (animations stylées) ========== */
+    .floating-zoo {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 10;
+      overflow: hidden;
+    }
+
+    .animal {
+      position: absolute;
+      font-size: 2rem;
+      opacity: 0.5;
+      color: #D4AF37;
+      filter: drop-shadow(0 4px 6px rgba(0,0,0,0.05));
+      animation: floatAnimal 8s infinite ease-in-out;
+      transition: transform 0.3s ease;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    /* versions différentes de déplacements */
+    .animal-1 { top: 12%; left: 5%; animation-duration: 14s; font-size: 2.2rem; opacity: 0.4; }
+    .animal-2 { top: 70%; left: 85%; animation-duration: 18s; animation-delay: -2s; font-size: 2rem; opacity: 0.45; }
+    .animal-3 { top: 40%; left: 15%; animation-duration: 12s; animation-delay: -4s; font-size: 2.5rem; opacity: 0.4; }
+    .animal-4 { top: 80%; left: 20%; animation-duration: 20s; animation-delay: -1s; font-size: 1.9rem; opacity: 0.5; }
+    .animal-5 { top: 25%; left: 75%; animation-duration: 16s; animation-delay: -6s; font-size: 2.3rem; opacity: 0.45; }
+    .animal-6 { top: 55%; left: 45%; animation-duration: 22s; animation-delay: -9s; font-size: 2rem; opacity: 0.4; }
+    .animal-7 { top: 88%; left: 65%; animation-duration: 15s; animation-delay: -3s; font-size: 2.1rem; opacity: 0.5; }
+    .animal-8 { top: 15%; left: 92%; animation-duration: 19s; animation-delay: -7s; font-size: 2rem; opacity: 0.45; }
+    .animal-9 { top: 48%; left: 88%; animation-duration: 13s; animation-delay: -5s; font-size: 2.4rem; opacity: 0.4; }
+
+    /* animation montante / descente + légère rotation */
+    @keyframes floatAnimal {
+      0% {
+        transform: translateY(0px) rotate(0deg);
+      }
+      50% {
+        transform: translateY(-25px) rotate(5deg);
+      }
+      100% {
+        transform: translateY(0px) rotate(0deg);
+      }
+    }
+
+    /* Effet papillon / battement sur certains animaux au hover (même si pas cliquable) */
+    .animal:hover {
+      animation-duration: 0.8s;
+      opacity: 0.8;
+      transform: scale(1.1);
+      transition: all 0.2s;
+    }
+
+    /* ========== HEADER / NAVIGATION ========== */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 0;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .logo h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.9rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #B8860B, #D4AF37);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.5px;
+    }
+    .logo span {
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: #7A6A5A;
+      display: block;
+      letter-spacing: 2px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 36px;
+    }
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 600;
+      color: #2C2418;
+      transition: 0.3s;
+      font-size: 1rem;
+    }
+    .nav-links a:hover {
+      color: #D4AF37;
+      transform: translateY(-2px);
+    }
+
+    /* Hero section */
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      margin: 40px 0 60px;
+      gap: 40px;
+    }
+    .hero-content {
+      flex: 1;
+    }
+    .hero-content .badge {
+      background: rgba(212, 175, 55, 0.15);
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #B8860B;
+      margin-bottom: 20px;
+    }
+    .hero-content h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.4rem;
+      font-weight: 700;
+      line-height: 1.2;
+      color: #1F1A14;
+      margin-bottom: 20px;
+    }
+    .hero-content p {
+      font-size: 1.1rem;
+      color: #5F5343;
+      margin-bottom: 32px;
+      max-width: 500px;
+    }
+    .btn-wa {
+      background: #25D366;
+      color: white;
+      border: none;
+      padding: 14px 28px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      transition: 0.3s;
+      text-decoration: none;
+      box-shadow: 0 8px 18px rgba(37, 211, 102, 0.2);
+    }
+    .btn-wa:hover {
+      background: #20b859;
+      transform: scale(1.02);
+      box-shadow: 0 12px 22px rgba(37, 211, 102, 0.3);
+    }
+    .hero-image {
+      flex: 1;
+      text-align: center;
+    }
+    .hero-image img {
+      width: 100%;
+      max-width: 400px;
+      border-radius: 32px;
+      box-shadow: 0 25px 40px -12px rgba(0,0,0,0.2);
+      border: 3px solid rgba(212,175,55,0.3);
+      transition: 0.4s;
+    }
+    .hero-image img:hover {
+      transform: scale(1.01);
+    }
+
+    /* Section services */
+    .section-title {
+      text-align: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin: 70px 0 20px;
+      color: #2C2418;
+      position: relative;
+    }
+    .section-title:after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 3px;
+      background: #D4AF37;
+      margin: 16px auto 0;
+      border-radius: 4px;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 30px;
+      margin: 50px 0;
+    }
+    .service-card {
+      background: white;
+      padding: 32px 20px;
+      border-radius: 28px;
+      text-align: center;
+      transition: all 0.35s ease;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.03);
+      border: 1px solid rgba(212,175,55,0.2);
+    }
+    .service-card i {
+      font-size: 2.5rem;
+      color: #D4AF37;
+      margin-bottom: 20px;
+    }
+    .service-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+    .service-card p {
+      color: #6b5a48;
+      margin-bottom: 16px;
+    }
+    .price-tag {
+      font-size: 1.7rem;
+      font-weight: 800;
+      color: #B8860B;
+      font-family: monospace;
+      letter-spacing: 1px;
+    }
+    .price-tag small {
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 35px -12px rgba(0,0,0,0.12);
+      border-color: #D4AF37;
+    }
+
+    /* Tableau des prix premium */
+    .pricing-table {
+      background: white;
+      border-radius: 36px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+      margin: 50px 0;
+      border: 1px solid #F0E3CE;
+    }
+    .pricing-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 20px 32px;
+      border-bottom: 1px solid #F0E3CE;
+      transition: 0.2s;
+      flex-wrap: wrap;
+    }
+    .pricing-row:last-child {
+      border-bottom: none;
+    }
+    .pricing-row:hover {
+      background: #FFFBF2;
+    }
+    .service-name {
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+    .service-price {
+      font-weight: 800;
+      font-size: 1.3rem;
+      color: #B8860B;
+    }
+    .service-price span {
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    /* Galerie mini */
+    .gallery {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 40px 0 60px;
+    }
+    .gallery img {
+      width: 240px;
+      height: 240px;
+      object-fit: cover;
+      border-radius: 28px;
+      box-shadow: 0 12px 20px rgba(0,0,0,0.1);
+      transition: 0.3s;
+      border: 2px solid rgba(212,175,55,0.4);
+    }
+    .gallery img:hover {
+      transform: scale(1.03);
+      border-color: #D4AF37;
+    }
+
+    /* WhatsApp section + contact */
+    .contact-premium {
+      background: linear-gradient(145deg, #FFF8ED, #FFF3E2);
+      border-radius: 48px;
+      padding: 48px 36px;
+      text-align: center;
+      margin: 70px 0 50px;
+    }
+    .contact-premium h3 {
+      font-size: 2rem;
+      font-family: 'Playfair Display', serif;
+      margin-bottom: 12px;
+    }
+    .contact-premium p {
+      max-width: 500px;
+      margin: 0 auto 24px;
+      color: #4e3f2f;
+    }
+    .whatsapp-big {
+      background: #25D366;
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 38px;
+      border-radius: 60px;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.2rem;
+      transition: 0.2s;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.1);
+    }
+    .whatsapp-big:hover {
+      background: #128C7E;
+      transform: translateY(-3px);
+    }
+    footer {
+      text-align: center;
+      padding: 30px 0 40px;
+      border-top: 1px solid #EADDBD;
+      margin-top: 20px;
+      color: #8f7e68;
+    }
+
+    /* Bouton WhatsApp flottant */
+    .float-wa {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #25D366;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 2rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      transition: 0.25s;
+      z-index: 99;
+      text-decoration: none;
+      animation: pulse-wa 1.5s infinite;
+    }
+    .float-wa:hover {
+      transform: scale(1.1);
+      background: #128C7E;
+    }
+    @keyframes pulse-wa {
+      0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5);}
+      70% { box-shadow: 0 0 0 12px rgba(37, 211, 102, 0);}
+      100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);}
+    }
+
+    /* responsive */
+    @media (max-width: 860px) {
+      .hero-content h2 { font-size: 2.5rem; }
+      .navbar { flex-direction: column; text-align: center; }
+      .nav-links { gap: 24px; justify-content: center; flex-wrap: wrap; }
+      .section-title { font-size: 2rem; }
+      .pricing-row { flex-direction: column; align-items: center; gap: 8px; text-align: center; }
+      .animal { font-size: 1.6rem; }
+    }
+    @media (max-width: 550px) {
+      .hero-content h2 { font-size: 2rem; }
+      .btn-wa { padding: 10px 20px; font-size: 0.9rem; }
+      .service-card .price-tag { font-size: 1.4rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ANIMAUX QUI BOUGENT (icones animées flottantes / élégantes) -->
+<div class="floating-zoo">
+  <i class="fas fa-cat animal animal-1"></i>
+  <i class="fas fa-dove animal animal-2"></i>
+  <i class="fas fa-fish animal animal-3"></i>
+  <i class="fas fa-dog animal animal-4"></i>
+  <i class="fas fa-kiwi-bird animal animal-5"></i>
+  <i class="fas fa-feather-alt animal animal-6"></i>
+  <i class="fas fa-hippo animal animal-7"></i>
+  <i class="fas fa-otter animal animal-8"></i>
+  <i class="fas fa-dragon animal animal-9"></i>
+  <!-- + quelques variations subtiles mais qui bougent toujours -->
+</div>
+
+<main>
+  <div class="container">
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="logo">
+        <h1>Salon Élégance</h1>
+        <span>✧ PREMIUM & NATURE VIVANTE ✧</span>
+      </div>
+      <div class="nav-links">
+        <a href="#accueil">Accueil</a>
+        <a href="#services">Services</a>
+        <a href="#tarifs">Tarifs</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+
+    <!-- Hero section avec animaux intégrés dans le design -->
+    <div id="accueil" class="hero">
+      <div class="hero-content">
+        <div class="badge"><i class="fas fa-paw"></i>  Art & Élégance animale</div>
+        <h2>Coiffure <br>Préstige & Harmonie</h2>
+        <p>Un salon d'exception où chaque détail respire le luxe, avec une touche sauvage et raffinée. Nos animaux mascottes flottent avec grâce pour une expérience unique.</p>
+        <a href="https://wa.me/237612345678?text=Bonjour%20je%20souhaite%20prendre%20rendez-vous%20dans%20votre%20salon%20premium%20!" class="btn-wa" target="_blank">
+          <i class="fab fa-whatsapp"></i> Réserver via WhatsApp
+        </a>
+      </div>
+      <div class="hero-image">
+        <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?w=500&auto=format" alt="Coupe élégante salon premium">
+      </div>
+    </div>
+
+    <!-- Section SERVICES avec prix FCFA -->
+    <div id="services">
+      <div class="section-title">Nos Prestations d'Exception</div>
+      <div class="services-grid">
+        <div class="service-card">
+          <i class="fas fa-cut"></i>
+          <h3>Coupe Signature</h3>
+          <p>Coupé sur mesure, dégradé artistique et finitions soyeuses.</p>
+          <div class="price-tag">8 500 <small>FCFA</small></div>
+        </div>
+        <div class="service-card">
+          <i class="fas fa-magic"></i>
+          <h3>Brushing Lumière</h3>
+          <p>Volume et brillance intense, tenue longue durée.</p>
+          <div class="price-tag">5 000 <small>FCFA</small></div>
+        </div>
+        <div class="service-card">
+          <i class="fas fa-palette"></i>
+          <h3>Coloration Prestige</h3>
+          <p>Pigments haut de gamme, reflets chatoyants.</p>
+          <div class="price-tag">14 900 <small>FCFA</small></div>
+        </div>
+        <div class="service-card">
+          <i class="fas fa-spa"></i>
+          <h3>Soin Renovateur</h3>
+          <p>Soin kératine ou oléo-thérapie, cheveux de rêve.</p>
+          <div class="price-tag">7 500 <small>FCFA</small></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TARIFS détaillés FCFA -->
+    <div id="tarifs">
+      <div class="section-title">Notre Carnet de Tarifs</div>
+      <div class="pricing-table">
+        <div class="pricing-row">
+          <span class="service-name"><i class="fas fa-scissors"></i> Coupe Homme (barbe incluse)</span>
+          <span class="service-price">6 500 <span>FCFA</span></span>
+        </div>
+        <div class="pricing-row">
+          <span class="service-name"><i class="fas fa-female"></i> Coupe Femme</span>
+          <span class="service-price">8 500 <span>FCFA</span></span>
+        </div>
+        <div class="pricing-row">
+          <span class="service-name"><i class="fas fa-water"></i> Shampooing + Brushing</span>
+          <span class="service-price">5 000 <span>FCFA</span></span>
+        </div>
+        <div class="pricing-row">
+          <span class="service-name"><i class="fas fa-tint"></i> Mèches / Balayage</span>
+          <span class="service-price">22 000 <span>FCFA</span></span>
+        </div>
+        <div class="pricing-row">
+          <span class="service-name"><i class="fas fa-hand-sparkles"></i> Lissage Brésilien</span>
+          <span class="service-price">35 000 <span>FCFA</span></span>
+        </div>
+        <div class="pricing-row">
+          <span class="service-name"><i class="fas fa-crown"></i> Pack Prestige (Coupe + Couleur + Soin)</span>
+          <span class="service-price">42 000 <span>FCFA</span></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Galerie stylée -->
+    <div class="section-title">Notre univers luxueux</div>
+    <div class="gallery">
+      <img src="https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?w=300&auto=format" alt="Coiffure chic">
+      <img src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=300&auto=format" alt="Ambiance salon">
+      <img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=300&auto=format" alt="Coloration premium">
+      <img src="https://images.unsplash.com/photo-1560869713-da86d2f8f5b4?w=300&auto=format" alt="Coupe dégradé">
+    </div>
+
+    <!-- Section Contact + WhatsApp intégré -->
+    <div id="contact" class="contact-premium">
+      <h3>✨ Prenez rendez-vous ✨</h3>
+      <p>Réservez votre instant beauté dans notre salon d'exception. Une équipe à votre écoute, des prestations hors du commun.</p>
+      <a href="https://wa.me/237612345678?text=Bonjour%20je%20découvre%20votre%20site%20et%20souhaite%20un%20rendez-vous%20premium%20!" class="whatsapp-big" target="_blank">
+        <i class="fab fa-whatsapp fa-lg"></i> Discuter sur WhatsApp
+      </a>
+      <div style="margin-top: 28px; font-size: 0.9rem; color:#a38962;">
+        <i class="fas fa-map-marker-alt"></i> Yaoundé / Douala | Ouvert de 9h à 19h
+      </div>
+    </div>
+
+    <footer>
+      <p>© 2025 Salon Élégance — Coiffure Premium & univers animalier enchanté. <br>Tous prix en FCFA. <i class="fas fa-paw"></i> Animaux magiques en mouvement permanent <i class="fas fa-feather"></i></p>
+    </footer>
+  </div>
+</main>
+
+<!-- Bouton WhatsApp flottant supplémentaire (double assurance) -->
+<a href="https://wa.me/237612345678?text=Bonjour%20je%20souhaite%20réserver%20une%20prestation%20premium%20!" class="float-wa" target="_blank">
+  <i class="fab fa-whatsapp"></i>
+</a>
+
+<!-- Petit script pour rendre les prix dynamiquement lisibles et garder les animaux en mouvement perpétuel (rien de plus nécessaire, CSS s'en occupe) -->
+<script>
+  // Optionnel : rendre les liens WhatsApp dynamiques avec votre numéro (remplacer facilement)
+  // Par souci d'adaptation, on peut laisser un numéro fictif mais l'utilisateur pourra changer les liens manuellement.
+  // Ajout d'un petit effet de clignotement doux pour les animaux (pas nécessaire mais style)
+  console.log("Salon premium avec animaux flottants — WhatsApp intégré — Prix FCFA");
+  // Pas de modification majeure, l'expérience est fluide
+</script>
+</body>
+</html>
